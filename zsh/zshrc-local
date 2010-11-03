@@ -1,8 +1,6 @@
 # Prompt Gentoo
 source /home/dir01/.dotfiles/zsh/prompt-gentoo
 
-####################################################
-## virtualenvwrapper-related stuff
-####################################################
+# Virtualenvwrapper-related stuff
 WORKON_HOME=/data/workspace/virtualenv
 source `which virtualenvwrapper.sh`
