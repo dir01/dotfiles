@@ -1,9 +1,10 @@
-#aliases
+# Aliases
 alias 'df'='df -h -x tmpfs'
 alias 'ls'='ls --color=auto -h'
 alias 'du'='du -h'
 alias 'grep'='grep --color=auto'
 alias 's'='sudo su'
+alias 'nano'='nano -icw'
 alias 'p'='pacman'
 alias 'y'='yaourt'
 alias 'less'='less -M'
@@ -26,8 +27,7 @@ setopt correctall
 
 # prompt
 autoload -U promptinit
-#promptinit
-#prompt gentoo
+promptinit
 
 # another usefull options
 setopt autocd
@@ -42,7 +42,7 @@ alias -g T=' | tail'
 alias -g G=' | grep'
 alias -g N='2>/dev/null'
 
-export PATH="$PATH:/home/dir01/:/root:/data/workspace/android-sdk-linux_86/tools"
+export PATH="$PATH:/home/dir01/:/root"
 export EDITOR="nano"
 export PYTHONDOCS=/usr/share/doc/python/html/
 
@@ -237,35 +237,8 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~''*?.old' 
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
-
-
-prompt_gentoo_setup () {
-prompt_gentoo_prompt=${1:-'blue'}
-prompt_gentoo_user=${2:-'green'}
-prompt_gentoo_root=${3:-'red'}
-
-if [ "$USER" = 'root' ]
-then
-base_prompt="%B%F{$prompt_gentoo_root}%m%k "
-else
-base_prompt="%B%F{$prompt_gentoo_user}%n@%m%k "
-fi
-post_prompt="%b%f%k"
-
-#setopt noxtrace localoptions
-
-path_prompt="%B%F{$prompt_gentoo_prompt}%1~"
-PS1="$base_prompt$path_prompt %# $post_prompt"
-PS2="$base_prompt$path_prompt %_> $post_prompt"
-PS3="$base_prompt$path_prompt ?# $post_prompt"
-}
-
-prompt_gentoo_setup "$@"
-
-
-####################################################
-## virtualenvwrapper-related stuff
-####################################################
-WORKON_HOME=/data/workspace/virtualenv
-source `which virtualenvwrapper.sh`   
+########################################
+## Load local settings
+########################################
+source ~/.zshrc-local
 
