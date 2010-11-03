@@ -1,0 +1,271 @@
+#aliases
+alias 'df'='df -h -x tmpfs'
+alias 'ls'='ls --color=auto -h'
+alias 'du'='du -h'
+alias 'grep'='grep --color=auto'
+alias 's'='sudo su'
+alias 'p'='pacman'
+alias 'y'='yaourt'
+alias 'less'='less -M'
+alias 'n'='nano -W'
+alias 'm'='mplayer'
+alias 'free'='free -m'
+alias 'ff-vacuum'='for dbase in *.sqlite; do sqlite3 $dbase "vacuum;"; done'
+alias 'aupd'='aptitude update'
+alias 'ai'='aptitude install'
+alias 'as'='aptitude search'
+alias 'ar'='aptitude remove'
+alias 'a'='aptitude' 
+
+# completion
+autoload -U compinit
+compinit
+
+# correction
+setopt correctall
+
+# prompt
+autoload -U promptinit
+#promptinit
+#prompt gentoo
+
+# another usefull options
+setopt autocd
+setopt hist_ignore_all_dups
+
+# Установка глобальных псевдонимов
+# для командных конвейеров
+alias -g M=' | more'
+alias -g L=' | less'
+alias -g H=' | head'
+alias -g T=' | tail'
+alias -g G=' | grep'
+alias -g N='2>/dev/null'
+
+export PATH="$PATH:/home/dir01/:/root:/data/workspace/android-sdk-linux_86/tools"
+export EDITOR="nano"
+export PYTHONDOCS=/usr/share/doc/python/html/
+
+# path для поиска командой cd: то есть вместо cd $HOME/docs/editors/
+# можно набирать просто cd editors
+cdpath=(/data/ ~/ /www)
+
+## Установка нормального поведения клавиш Delete, Home, End и т.д.:
+case $TERM in linux)
+bindkey "^[[2~" yank
+bindkey "^[[3~" delete-char
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[e" expand-cmd-path ## C-e for expanding path of typed command
+bindkey "^[[A" up-line-or-search ## up arrow for back-history-search
+bindkey "^[[B" down-line-or-search ## down arrow for fwd-history-search
+bindkey " " magic-space ## do history expansion on space
+;;
+*xterm*|rxvt|(dt|k|E)term)
+bindkey "^[[2~" yank
+bindkey "^[[3~" delete-char
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[e" expand-cmd-path ## C-e for expanding path of typed command
+bindkey "^[[A" up-line-or-search ## up arrow for back-history-search
+bindkey "^[[B" down-line-or-search ## down arrow for fwd-history-search
+bindkey " " magic-space ## do history expansion on space
+;;
+esac
+# Примечание: если, скажем, в KDE для konsole
+# выбрать тип Linux console, необходимости
+# во второй секции нет.
+
+# Use hard limits, except for a smaller stack and no core dumps
+unlimit
+limit stack 8192
+limit core 0
+limit -s
+
+# Установка атрибутов доступа для вновь создаваемых файлов
+umask 022
+
+# Исправление поведения less - для ликвидации лишних Esc 
+# и прочего безобразия при  выводе man-страниц.
+# Насколько мне известно, нужно только в некоторых дистрибутивах
+export LESS="-R"
+
+# Установка alias'ов
+
+## alias'ы для команд, не требующих коррекции, но требующих подтверждения
+alias mv='nocorrect mv -i'	# переименование-перемещение c пogтвepжgeнueм
+alias cp='nocorrect cp -iR'	# рекурсивное копирование с подтверждением
+alias rm='nocorrect rm -i'	# удаление с подтверждением
+alias rmf='nocorrect rm -f'	# принудимтельное удаление
+alias rmrf='nocorrect rm -fR'	# принудительное рекурсивное удаление
+alias mkdir='nocorrect mkdir'	# создание каталогов без коррекции
+## Примечание: если не определить здесь nocorrect,
+## zsh будет настойчиво предлагать подстановку существующих имен
+## при создании каталого, копировании и т.д.
+
+
+# Ниже даны опции, относящиеся к функциям zsh,
+# которыми собственно и определяется мощь этой оболочки
+# Shell functions
+setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
+freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; 
+done }
+
+# Where to look for autoloaded function definitions
+fpath=($fpath ~/.zfunc)
+
+# Autoload all shell functions from all directories in $fpath (following
+# symlinks) that have the executable bit on (the executable bit is not
+# necessary, but gives you an easy way to stop the autoloading of a
+# particular shell function). $fpath should not be empty for this to work.
+for func in $^fpath/*(N-.x:t); autoload $func
+
+# automatically remove duplicates from these arrays
+typeset -U path cdpath fpath manpath
+
+# Указание путей к man-страницам.
+manpath="/usr/man:/usr/share/man:/usr/local/man:/usr/X11R6/man:/opt/qt/doc"
+export MANPATH
+
+# Список хостов, к которым будет применяться автодополнение
+# при наборе в командной строке
+# например, как аргументов браузера или ftp-клиента (see later zstyle)
+hosts=('hostname' darkstar dir01.org arkh.net main.iit.agtu.ru ya.ru)
+
+## файл истории команд
+## если не указан, история не будет сохраняться
+## при выходе из сеанса
+HISTFILE=~/.zhistory
+
+## Число команд, сохраняемых в HISTFILE
+SAVEHIST=5000
+
+## Чucлo koмaнg, coxpaняeмыx в сеансе
+HISTSIZE=4000
+## Примечание:
+## рекомендуются равные значения для 
+## SAVEHIST и HISTSIZE
+
+DIRSTACKSIZE=20
+
+# Опции истории команд
+
+## Дополнение файла истрии
+setopt  APPEND_HISTORY
+
+## Игнopupoвaть вce пoвтopeнuя команд
+setopt  HIST_IGNORE_ALL_DUPS
+
+## Игнopupo лишние пpoбeлы
+setopt  HIST_IGNORE_SPACE
+
+## Удалять из файл истории пустые строки
+setopt  HIST_REDUCE_BLANKS
+
+# Установка-снятие опций шелла
+setopt   notify globdots correct pushdtohome cdablevars autolist
+setopt   correctall autocd recexact longlistjobs
+setopt   autoresume histignoredups pushdsilent noclobber
+setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+unsetopt bgnice autoparamslash
+
+## Отключение звукового сигнала
+## при ошибках
+setopt  No_Beep
+
+## Нe cчuтaть Control+D зa выxog uз oбoлoчku
+#setopt  IGNORE_EOF
+
+# Autoload zsh modules when they are referenced
+zmodload -a zsh/stat stat
+zmodload -a zsh/zpty zpty
+zmodload -a zsh/zprof zprof
+zmodload -ap zsh/mapfile mapfile
+
+# Опции общего поведения
+# bindkey -v	# режим навигации в стиле vi
+bindkey -e	# peжuм нaвuгaцuu в cтuлe emacs
+
+bindkey ' ' magic-space    # also do history expansion on space
+bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+
+# Для разворота сокращенного ввода типа cd d/e в docs/editors
+autoload -U compinit
+compinit
+
+# Completion Styles
+
+# list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored 
+_approximate
+
+# allow one error for every three characters typed in approximate completer
+zstyle -e ':completion:*:approximate:*' max-errors 
+reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )
+
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+# formatting and messages
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
+
+# match uppercase from lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# command for process lists, the local web server details and host completion
+#zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
+#zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
+zstyle '*' hosts $hosts
+
+# Filename suffixes to ignore during completion (except after rm command)
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~''*?.old' '*?.pro'
+# the same for old style completion
+#fignore=(.o .c~ .old .pro)
+
+# ignore completion functions (until the _ignored completer)
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+
+
+prompt_gentoo_setup () {
+prompt_gentoo_prompt=${1:-'blue'}
+prompt_gentoo_user=${2:-'green'}
+prompt_gentoo_root=${3:-'red'}
+
+if [ "$USER" = 'root' ]
+then
+base_prompt="%B%F{$prompt_gentoo_root}%m%k "
+else
+base_prompt="%B%F{$prompt_gentoo_user}%n@%m%k "
+fi
+post_prompt="%b%f%k"
+
+#setopt noxtrace localoptions
+
+path_prompt="%B%F{$prompt_gentoo_prompt}%1~"
+PS1="$base_prompt$path_prompt %# $post_prompt"
+PS2="$base_prompt$path_prompt %_> $post_prompt"
+PS3="$base_prompt$path_prompt ?# $post_prompt"
+}
+
+prompt_gentoo_setup "$@"
+
+
+####################################################
+## virtualenvwrapper-related stuff
+####################################################
+WORKON_HOME=/data/workspace/virtualenv
+source `which virtualenvwrapper.sh`   
+
