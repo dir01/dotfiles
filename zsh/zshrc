@@ -10,6 +10,7 @@ alias 'y'='yaourt'
 alias 'less'='less -M'
 alias 'n'='nano -W'
 alias 'm'='mplayer'
+alias 'g'='git status'
 alias 'free'='free -m'
 alias 'ff-vacuum'='for dbase in *.sqlite; do sqlite3 $dbase "vacuum;"; done'
 alias 'aupd'='aptitude update'
@@ -17,6 +18,7 @@ alias 'ai'='aptitude install'
 alias 'as'='aptitude search'
 alias 'ar'='aptitude remove'
 alias 'a'='aptitude' 
+alias 'fakemail'='sudo python -m smtpd -n -c DebuggingServer localhost:25'
 
 # completion
 autoload -U compinit
