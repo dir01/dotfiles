@@ -19,6 +19,7 @@ alias 'as'='aptitude search'
 alias 'ar'='aptitude remove'
 alias 'a'='aptitude' 
 alias 'fakemail'='sudo python -m smtpd -n -c DebuggingServer localhost:25'
+alias 'grepy'='grep --include="*.py"'
 
 # completion
 autoload -U compinit
