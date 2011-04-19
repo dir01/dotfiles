@@ -21,6 +21,8 @@
 	ci = commit
 	co = checkout
 	br = branch
+	df = diff
+	l  = log
 [user]
 	name = Andrew Zhu
 	email = dir01@dir01.org
