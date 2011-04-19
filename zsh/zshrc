@@ -45,7 +45,7 @@ alias -g T=' | tail'
 alias -g G=' | grep'
 alias -g N='2>/dev/null'
 
-export PATH="$PATH:/home/dir01/:/root"
+export PATH="$PATH"
 export EDITOR="nano"
 export PYTHONDOCS=/usr/share/doc/python/html/
 
@@ -137,7 +137,7 @@ export MANPATH
 # Список хостов, к которым будет применяться автодополнение
 # при наборе в командной строке
 # например, как аргументов браузера или ftp-клиента (see later zstyle)
-hosts=('hostname' darkstar dir01.org arkh.net main.iit.agtu.ru ya.ru)
+hosts=(dir01.org google.com ya.ru)
 
 ## файл истории команд
 ## если не указан, история не будет сохраняться
