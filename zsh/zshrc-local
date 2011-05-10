@@ -2,5 +2,5 @@
 source /home/dir01/.dotfiles/zsh/prompt-gentoo
 
 # Virtualenvwrapper-related stuff
-WORKON_HOME=/data/workspace/virtualenv
+WORKON_HOME=/home/dir01/wrk/env
 source `which virtualenvwrapper.sh`

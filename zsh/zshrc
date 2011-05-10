@@ -243,5 +243,7 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 ########################################
 ## Load local settings
 ########################################
-source ~/.zshrc-local
-
+if [ -f ~/.zshrc-local ];
+then
+   source ~/.zshrc-local
+fi
