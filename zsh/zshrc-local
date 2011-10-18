@@ -3,4 +3,5 @@ source /home/dir01/.dotfiles/zsh/prompt-gentoo
 
 # Virtualenvwrapper-related stuff
 WORKON_HOME=/home/dir01/wrk/env
+VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 source `which virtualenvwrapper.sh`
