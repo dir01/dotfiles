@@ -2,7 +2,7 @@ alias 'df'='df -h -x tmpfs'
 alias 'ls'='ls --color=auto -h'
 alias 'du'='du -h'
 alias 'grep'='grep --color=auto -n'
-alias 'less'='less -M'
+alias 'less'='less -M -R'
 alias 'free'='free -m'
 alias 'nano'='nano -icW'
 
