@@ -1,0 +1,16 @@
+# curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="nicoulaj"
+
+plugins=(command-not-found compleat fabric pip git git-flow)
+
+source $ZSH/oh-my-zsh.sh
+source $HOME/.dotfiles/zsh/aliases.zsh
+
+export PATH=/home/dir01/tiburon/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+if [ -f ~/.zshrc-local ]; then
+   source ~/.zshrc-local
+fi
