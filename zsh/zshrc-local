@@ -1,7 +1,8 @@
-# Prompt Gentoo
-source /home/dir01/.dotfiles/zsh/prompt-gentoo
-
 # Virtualenvwrapper-related stuff
-WORKON_HOME=/home/dir01/wrk/env
+WORKON_HOME=~/Projects/env
 VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 source `which virtualenvwrapper.sh`
+
+# Use brew-installed GNU coreutils
+PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin/:$PATH"
+
