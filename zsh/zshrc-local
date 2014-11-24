@@ -4,5 +4,4 @@ VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 source `which virtualenvwrapper.sh`
 
 # Use brew-installed GNU coreutils
-PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin/:$PATH"
-
+PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH"
