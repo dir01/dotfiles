@@ -3,23 +3,30 @@ alias 'gpus'='git push origin $(git_current_branch)'
 alias 'glog'='git log'
 alias 'gadd'='git add'
 alias 'gci'='git commit'
+alias 'gcia'='git commit --amend'
 alias 'gbr'='git branch'
+alias 'gbrr'='git branch -r'
 alias 'gmer'='git merge'
 alias 'gdf'='git diff'
+alias 'gdfc'='git diff --cached'
 alias 'gsup'='git submodule update'
 alias 'gsho'='git show'
 alias 'gche'='git cherry-pick'
+alias 'gref'='git reflog'
 alias 'grev'='git revert'
 alias 'gtagl'='git tag --list'
 alias 'gfet'='git fetch'
 
 alias 'greb'='git rebase'
 alias 'grebi'='git rebase --interactive'
+alias 'grebc'='git rebase --continue'
+alias 'greba'='git rebase --abort'
 
 alias 'gre'='git reset'
 alias 'greh'='git reset --hard'
 
-alias 'gst'='git stash'
+alias 'gst'='git stash -u'
+
 alias 'gstal'='git stash list'
 function gstshow() {
    git show "stash@{$1}"

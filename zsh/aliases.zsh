@@ -1,4 +1,4 @@
-aliases_root=$HOME/.dotfiles/zsh/aliases
+aliases_root=$HOME/dotfiles/zsh/aliases
 source $aliases_root/system.zsh
 source $aliases_root/ubuntu.zsh
 source $aliases_root/git.zsh
