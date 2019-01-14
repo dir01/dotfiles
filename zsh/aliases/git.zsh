@@ -1,7 +1,9 @@
 alias 'gpul'='git pull origin $(git_current_branch)'
+alias 'gpulr'='gpul --rebase'
 alias 'gpus'='git push origin $(git_current_branch)'
 alias 'glog'='git log'
 alias 'gadd'='git add'
+alias 'grm'='git rm'
 alias 'gci'='git commit'
 alias 'gcia'='git commit --amend'
 alias 'gbr'='git branch'
@@ -25,7 +27,8 @@ alias 'greba'='git rebase --abort'
 alias 'gre'='git reset'
 alias 'greh'='git reset --hard'
 
-alias 'gst'='git stash -u'
+alias 'gst'='git stash'
+alias 'gsta'='git stash -a -u'
 
 alias 'gstal'='git stash list'
 function gstshow() {
